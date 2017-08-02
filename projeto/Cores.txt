@@ -1,0 +1,8 @@
+
+- azul:        #172A89
+- verde:       #06A77D
+- vermelho:    #CC2936
+- cinza claro: #6B818C
+
+
+
