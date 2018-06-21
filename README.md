@@ -1,5 +1,7 @@
-# teed-blog
+### teed-blog
 
-### Site de um serviço fictício de criação blogs
+#### A fictional website.
 
-Serve apenas para aprendizagem.
+This is website is just a sample for a website development.
+
+> Have many things to change here.
