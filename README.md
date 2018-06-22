@@ -10,7 +10,7 @@ This is website is just a sample for a website development.
 
 #### Why
 
-I was want to create am professional and beautiful website, based on the best actual technologies, to provider to my client an powerful experience in the web.
+I was want to create a professional and beautiful website, based on the best actual technologies, to provider to my client an powerful experience in the web.
 
 ##### the ideia
 
