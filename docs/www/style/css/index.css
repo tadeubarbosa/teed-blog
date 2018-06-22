@@ -131,13 +131,16 @@ a {
     z-index: -3;
     filter: blur(12px);
     background-image: url('../../images/704E761C.jpg');
-    background-attachment: fixed;
     background-size: 130%;
 }
 
 #tb-header-top-content {
     padding-top: 100px;
     text-align: center;
+}
+
+#tb-header-top-content-note {
+    width: 100%;
 }
 
 #tb-header-top-content-header {
