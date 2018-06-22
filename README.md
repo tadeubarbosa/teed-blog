@@ -20,11 +20,3 @@ The idea for that project was create an website from another creators of blogs, 
 ##### the technologies
 
 The technologies that I wass want to use in was are: PHP, SASS, and related.
-
-
----
-
-
-### A screenshot from the home page:
-
-![Screenshot from the home page](/../master/project/images/Scheenshot-Jun.18.png)
