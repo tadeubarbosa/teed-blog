@@ -8,4 +8,4 @@ This is website is just a sample for a website development.
 
 ### A screenshot from the home page:
 
-![Screenshot from the home page](/../master/project/images/template-01.png)
+![Screenshot from the home page](/../master/project/images/Scheenshot - Jun-18.png)
