@@ -8,12 +8,98 @@ uglify     = require('gulp-uglify')
 coffee     = require('gulp-coffee')
 livereload = require('gulp-livereload')
 
-# compiling sass
+jsInternals = [
+	'assets/javascript/**/*'
+	'assets/angular/main.js'
+]
+jsExternals = [
+	'node_modules/jquery/dist/jquery.js'
+	'node_modules/angular/angular.js'
+]
+
+# compile sass
 gulp.task 'sass', ->
-    gulp.src ['assets/sass/*.sass', 'assets/sass/**/*.sass']
-        .pipe sass()
-        .pipe prefix {
+	gulp.src 'assets/sass/*.sass'
+		.pipe sass()
+		.pipe prefix {
             browsers: ['last 5 versions']
-            cascade:  false
+            cascade: false
         }
-        .pipe gulp.dest 'public/css/'
+		.pipe gulp.dest 'www/build/'
+
+# concat internal js
+gulp.task 'js:internals', ->
+	gulp.src jsInternals
+		.pipe uglify()
+		.pipe concat 'internals.js'
+		.pipe gulp.dest 'www/build/'
+
+# concat external js
+gulp.task 'js:externals', ->
+	gulp.src jsExternals
+		.pipe uglify()
+		.pipe concat 'externals.js'
+		.pipe gulp.dest 'www/build/'
+
+####
+# minify functions
+
+# minify css
+gulp.task 'css:minify', ->
+	gulp.src 'www/build/main.css'
+		.pipe cleanCSS ({
+			debug: true, compatibility: 'ie8'
+		})
+		.pipe prefix {
+            browsers: ['last 5 versions']
+            cascade: false
+        }
+		.pipe rename { suffix: '.min' }
+		.pipe gulp.dest 'www/build/'
+		null
+
+# minify js
+gulp.task 'js:minify', ->
+	gulp.src 'www/build/internals.js'
+		.pipe uglify()
+		.pipe rename { suffix: '.min' }
+		.pipe gulp.dest 'www/build/'
+
+# minify all types
+gulp.task 'minify', ['css:minify', 'js:minify']
+
+# compile angularjs coffee
+gulp.task 'compile:ang.coffee', ->
+	gulp.src ['assets/angular/config/*.coffee', 'assets/angular/**/*.coffee']
+		.pipe coffee { bare: true }
+		.pipe concat 'main.js'
+		.pipe gulp.dest 'assets/angular/'
+
+# compile coffee
+gulp.task 'compile:coffee', ->
+	gulp.src ['assets/coffee/*.coffee', 'assets/coffee/**/*.coffee']
+		.pipe coffee { bare: true }
+		.pipe concat 'coffee.builded.js'
+		.pipe gulp.dest 'assets/javascript/'
+
+# compile coffee and add to internals
+gulp.task 'coffee', ['compile:coffee', 'js:internals']
+
+# concat scripts
+gulp.task 'js:all', ->
+	gulp.src ['www/build/externals.js', 'www/build/internals.min.js']
+		.pipe concat 'main.min.js'
+		.pipe gulp.dest 'www/build/'
+
+# build
+gulp.task 'production', ['sass', 'css:minify', 'coffee', 'js:minify', 'js:all']
+
+# css:watch
+gulp.task 'sass:watch', ->
+	livereload.listen()
+	gulp.watch 'assets/sass/**/*.sass', ['sass'], { awaitWriteFinish: true }
+
+# js:watch
+gulp.task 'coffee:watch', ->
+	livereload.listen()
+gulp.watch 'assets/angular/**/*.js', ['coffee'], { awaitWriteFinish: true }
