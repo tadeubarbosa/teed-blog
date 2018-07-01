@@ -28,6 +28,7 @@ gulp.task 'sass', ->
 			browsers: ['last 5 versions']
 			cascade: false
 		}
+		.pipe livereload()
 		.pipe gulp.dest 'public/build/'
 
 # concat internal js
@@ -35,6 +36,7 @@ gulp.task 'js:internals', ->
 	gulp.src jsInternals
 		.pipe uglify()
 		.pipe concat 'internals.js'
+		.pipe livereload()
 		.pipe gulp.dest 'public/build/'
 
 # concat external js
@@ -42,6 +44,7 @@ gulp.task 'js:externals', ->
 	gulp.src jsExternals
 		.pipe uglify()
 		.pipe concat 'externals.js'
+		.pipe livereload()
 		.pipe gulp.dest 'public/build/'
 
 ####
@@ -58,14 +61,15 @@ gulp.task 'css:minify', ->
 			cascade: false
 		}
 		.pipe rename { suffix: '.min' }
+		.pipe livereload()
 		.pipe gulp.dest 'public/build/'
-		null
 
 # minify js
 gulp.task 'js:minify', ->
 	gulp.src 'public/build/internals.js'
 		.pipe uglify()
 		.pipe rename { suffix: '.min' }
+		.pipe livereload()
 		.pipe gulp.dest 'public/build/'
 
 # minify all types
@@ -76,6 +80,7 @@ gulp.task 'compile:ang.coffee', ->
 	gulp.src ['assets/angular/config/*.coffee', 'assets/angular/**/*.coffee']
 		.pipe coffee { bare: true }
 		.pipe concat 'main.js'
+		.pipe livereload()
 		.pipe gulp.dest 'assets/angular/'
 
 # compile coffee
@@ -83,6 +88,7 @@ gulp.task 'compile:coffee', ->
 	gulp.src ['assets/coffee/*.coffee', 'assets/coffee/**/*.coffee']
 		.pipe coffee { bare: true }
 		.pipe concat 'coffee.builded.js'
+		.pipe livereload()
 		.pipe gulp.dest 'assets/javascript/'
 
 # compile coffee and add to internals
@@ -92,6 +98,7 @@ gulp.task 'coffee', ['compile:coffee', 'js:internals']
 gulp.task 'js:all', ->
 	gulp.src ['public/build/externals.js', 'public/build/internals.min.js']
 		.pipe concat 'main.min.js'
+		.pipe livereload()
 		.pipe gulp.dest 'public/build/'
 
 # build
