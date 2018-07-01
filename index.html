@@ -1,44 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt_br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>teedblog</title>
-    <link rel="stylesheet" type="text/css" href="www/style/css/font-awesome.min.css">
-    <link rel="stylesheet" href="www/style/css/index.css">
-    <link rel="stylesheet" type="text/css" href="www/style/css/bootstrap.min.css">
+    <title>Teed Blog</title>
+    <link rel="stylesheet" href="public/build/main.css">
 </head>
-
 <body>
 
-    <header id="tb-header">
+    <header class="content" id="header">
 
-        <nav id="tb-menu" class="row">
-            <div class="container">
-                <ul id="tb-menu-links">
-                    <li><a href="index.html" class="selected">home</a></li>
-                    <li><a href="register.html">cadastro/login</a></li>
-                    <li><a href="blog.html">blog</a></li>
-                </ul>
-                <div id="tb-menu-search">
-                    <input type="search" placeholder="pesquisa">
-                    <i class="fa fa-search"></i>
-                </div>
-            </div>
-        </nav>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="container">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="index.html">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="register.html">register/login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="blog.html">blog</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-        <div id="tb-header-top">
-            <div id="tb-header-top-background"></div>
-            <div id="tb-header-top-content" class="container">
+        <div id="header-top">
+            <div id="header-top_background"></div>
+            <div id="header-top_content" class="container">
                 <div class="row">
-                    <div id="tb-header-top-content-logo" class="col-md-2">
-                        <img src="www/images/logo-white.png" alt="Logo teedblog" width="150px" />
+                    <div id="header-top_content-logo" class="col-md-2">
+                        <img src="public/images/logo-white.png" alt="Logo teedblog" width="150px" />
                     </div>
-                    <div id="tb-header-top-content-middle" class="col-md-10">
-                        <p id="tb-header-top-content-header">Organize as suas <span>ideias</span> de forma <span>simples</span> e <span>fácil</span>! </p>
-                        <img id="tb-header-top-content-note" src="www/images/note.png" alt="note" />
+                    <div id="header-top_content-middle" class="col-md-10">
+                        <p id="header-top_content-header">
+                            Organize your <span>ideas</span> <span>simply</span> and <span>easily</span>!
+                        </p>
+                        <img id="header-top_content-note" src="public/images/note.png" alt="note" />
                     </div>
                 </div>
             </div>
@@ -47,7 +55,7 @@
     </header>
 
     <div id="bar-promotions">
-        <i class="fa fa-heart"></i> Todas as funcionalidades gratuitas!
+        <i class="fas fa-heart"></i> All functionalities for free!
     </div>
 
     <div class="container">
@@ -56,11 +64,11 @@
 
             <section id="testimonials">
 
-                <h2 class="text-center">TESTEMUNHOS</h2>
+                <h2 class="text-center">TESTEMONIALS</h2>
 
                 <div class="testemony row">
                     <div class="col-sm-2 col-md-2 col-lg-2">
-                        <img class="img-circle" width="100%" src="www/images/users/1.jpg" alt="user 1" />
+                        <img class="img-circle" src="public/images/users/1.jpg" alt="user 1" />
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         <h3 class="testmonial-header"> Karen Ross </h3>
@@ -72,7 +80,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="testemony text-right row">
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         <h3 class="testmonial-header"> Janet Fiels </h3>
@@ -84,13 +91,12 @@
                         </p>
                     </div>
                     <div class="col-sm-2 col-md-2 col-lg-2">
-                        <img class="img-circle" width="100%" src="www/images/users/2.jpg" alt="user 2" />
+                        <img class="img-circle" src="public/images/users/2.jpg" alt="user 2" />
                     </div>
                 </div>
-
                 <div class="testemony row">
                     <div class="col-sm-2 col-md-2 col-lg-2">
-                        <img class="img-circle" width="100%" src="www/images/users/3.jpg" alt="user 3" />
+                        <img class="img-circle" src="public/images/users/3.jpg" alt="user 3" />
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                         <h3 class="testmonial-header"> Russell Reed </h3>
@@ -102,25 +108,17 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="row">
-
                     <a href="index.html" id="testemony-action" class="text-center col-md-5 col-md-offset-3 col-lg-5 col-lg-offset-3">
-
-                        <i class="fa fa-star"></i> Inicie um blog <span>agora</span> em <span>poucos</span> passos!
-
+						<i class="fas fa-star"></i> Init a blog <span>now</span> in <span>few</span> steps!
                     </a>
-
                 </div>
-
             </section>
 
             <hr class="rule">
 
             <section id="about">
-
-                <h2 class="text-center">SOBRE</h2>
-
+                <h2 class="text-center">ABOUT</h2>
                 <p class="text-center">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi est eos officia iste qui rem, magni fuga laborum repellendus
                     sapiente, mollitia unde adipisci assumenda dolorum suscipit ratione, voluptatibus sed nobis! Lorem ipsum
@@ -135,25 +133,20 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, natus ab debitis odio enim ipsa nobis
                     veritatis eos in nesciunt quibusdam velit omnis, consectetur blanditiis unde, recusandae, iusto et esse.iusto
                     et esse.
-
                     <br><br>
-
-                    <a href="about" id="about-link">continuar a ler</a>
-
+                    <a href="about" id="about-link">continue reading</a>
                     <br><br>
                 </p>
 
                 <div id="about-social_links" class="text-center">
                     <a href="https://facebook.com" target="_blank">
-                        <i class="fa fa-facebook"></i> facebook
+						<i class="fab fa-facebook"></i> facebook
                     </a>
-
                     <a href="https://youtube.com" target="_blank">
-                        <i class="fa fa-youtube"></i> youtube
+                        <i class="fab fa-youtube"></i> youtube
                     </a>
-
                     <a href="https://twitter.com" target="_blank">
-                        <i class="fa fa-twitter"></i> twitter
+                        <i class="fab fa-twitter"></i> twitter
                     </a>
                 </div>
 
@@ -168,38 +161,35 @@
         <hr class="rule">
 
         <div id="footer-logo">
-            <img src="www/images/logo.png" width="150px" alt="logo teedblog" />
+            <img src="public/images/logo.png" width="150px" alt="logo teedblog" />
         </div>
 
         <div id="footer-links">
             <ul>
-                <li><a href="./">home</a></li>
-                <li><a href="register">login/cadastro</a></li>
-                <li><a href="blogs">blogs</a></li>
-                <li><a href="about">sobre</a></li>
+                <li><a href="index.html">home</a></li>
+                <li><a href="register.html">register/login</a></li>
+                <li><a href="blogs.html">blogs</a></li>
+                <li><a href="about.html">sobre</a></li>
             </ul>
         </div>
 
         <div id="footer-about">
-            teedblog - 2017 &copy; Nem todos os direitos reservados
+            teedblog - 2017 &copy;
         </div>
 
         <div id="footer-social_links">
             <a href="https://facebook.com" class="about-link about-link-facebook" target="_blank">
-                <i class="fa fa-facebook"></i>
+                <i class="fab fa-facebook"></i>
             </a>
-
             <a href="https://youtube.com" class="about-link about-link-youtube" target="_blank">
-                <i class="fa fa-youtube"></i>
+                <i class="fab fa-youtube"></i>
             </a>
-
             <a href="https://twitter.com" class="about-link about-link-twitter" target="_blank">
-                <i class="fa fa-twitter"></i>
+                <i class="fab fa-twitter"></i>
             </a>
         </div>
 
     </footer>
 
 </body>
-
 </html>
