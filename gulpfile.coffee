@@ -14,6 +14,8 @@ jsInternals = [
 ]
 jsExternals = [
 	'node_modules/jquery/dist/jquery.js'
+	'node_modules/popper.js/dist/popper.js'
+	'node_modules/bootstrap/dist/js/bootstrap.js'
 	'node_modules/angular/angular.js'
 ]
 
@@ -22,9 +24,9 @@ gulp.task 'sass', ->
 	gulp.src 'assets/sass/*.sass'
 		.pipe sass()
 		.pipe prefix {
-            browsers: ['last 5 versions']
-            cascade: false
-        }
+			browsers: ['last 5 versions']
+			cascade: false
+		}
 		.pipe gulp.dest 'public/build/'
 
 # concat internal js
@@ -51,9 +53,9 @@ gulp.task 'css:minify', ->
 			debug: true, compatibility: 'ie8'
 		})
 		.pipe prefix {
-            browsers: ['last 5 versions']
-            cascade: false
-        }
+			browsers: ['last 5 versions']
+			cascade: false
+		}
 		.pipe rename { suffix: '.min' }
 		.pipe gulp.dest 'public/build/'
 		null
@@ -99,7 +101,19 @@ gulp.task 'sass:watch', ->
 	livereload.listen()
 	gulp.watch 'assets/sass/**/*.sass', ['sass'], { awaitWriteFinish: true }
 
-# js:watch
+# coffee:watch
 gulp.task 'coffee:watch', ->
 	livereload.listen()
-gulp.watch 'assets/angular/**/*.js', ['coffee'], { awaitWriteFinish: true }
+	gulp.watch 'assets/coffee/**/*.coffee', ['coffee'], { awaitWriteFinish: true }
+
+# angular:watch
+gulp.task 'angular:watch', ->
+	livereload.listen()
+	gulp.watch ['assets/angular/**/*.coffee','assets/angular/**/*.js'], ['coffee'], { awaitWriteFinish: true }
+
+# watch all
+gulp.task 'watch', ->
+	livereload.listen()
+	gulp.watch 'assets/sass/**/*.sass', ['sass'],   { awaitWriteFinish: true }
+	gulp.watch ['assets/angular/**/*.coffee','assets/angular/**/*.js'], ['coffee'], { awaitWriteFinish: true }
+	gulp.watch 'assets/angular/**/*.coffee', ['angular'], { awaitWriteFinish: true }
