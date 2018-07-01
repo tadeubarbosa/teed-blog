@@ -11,6 +11,7 @@ livereload = require('gulp-livereload')
 jsInternals = [
 	'assets/javascript/**/*'
 	'assets/angular/main.js'
+	'assets/angular/**/*.js'
 ]
 jsExternals = [
 	'node_modules/jquery/dist/jquery.js'
@@ -115,5 +116,5 @@ gulp.task 'angular:watch', ->
 gulp.task 'watch', ->
 	livereload.listen()
 	gulp.watch 'assets/sass/**/*.sass', ['sass'],   { awaitWriteFinish: true }
-	gulp.watch ['assets/angular/**/*.coffee','assets/angular/**/*.js'], ['coffee'], { awaitWriteFinish: true }
-	gulp.watch 'assets/angular/**/*.coffee', ['angular'], { awaitWriteFinish: true }
+	gulp.watch 'assets/angular/**/*.coffee', ['coffee'], { awaitWriteFinish: true }
+	gulp.watch 'assets/angular/**/*.js', ['js:internals'], { awaitWriteFinish: true }
