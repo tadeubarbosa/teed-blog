@@ -25,28 +25,28 @@ gulp.task 'sass', ->
             browsers: ['last 5 versions']
             cascade: false
         }
-		.pipe gulp.dest 'www/build/'
+		.pipe gulp.dest 'public/build/'
 
 # concat internal js
 gulp.task 'js:internals', ->
 	gulp.src jsInternals
 		.pipe uglify()
 		.pipe concat 'internals.js'
-		.pipe gulp.dest 'www/build/'
+		.pipe gulp.dest 'public/build/'
 
 # concat external js
 gulp.task 'js:externals', ->
 	gulp.src jsExternals
 		.pipe uglify()
 		.pipe concat 'externals.js'
-		.pipe gulp.dest 'www/build/'
+		.pipe gulp.dest 'public/build/'
 
 ####
 # minify functions
 
 # minify css
 gulp.task 'css:minify', ->
-	gulp.src 'www/build/main.css'
+	gulp.src 'public/build/main.css'
 		.pipe cleanCSS ({
 			debug: true, compatibility: 'ie8'
 		})
@@ -55,15 +55,15 @@ gulp.task 'css:minify', ->
             cascade: false
         }
 		.pipe rename { suffix: '.min' }
-		.pipe gulp.dest 'www/build/'
+		.pipe gulp.dest 'public/build/'
 		null
 
 # minify js
 gulp.task 'js:minify', ->
-	gulp.src 'www/build/internals.js'
+	gulp.src 'public/build/internals.js'
 		.pipe uglify()
 		.pipe rename { suffix: '.min' }
-		.pipe gulp.dest 'www/build/'
+		.pipe gulp.dest 'public/build/'
 
 # minify all types
 gulp.task 'minify', ['css:minify', 'js:minify']
@@ -87,9 +87,9 @@ gulp.task 'coffee', ['compile:coffee', 'js:internals']
 
 # concat scripts
 gulp.task 'js:all', ->
-	gulp.src ['www/build/externals.js', 'www/build/internals.min.js']
+	gulp.src ['public/build/externals.js', 'public/build/internals.min.js']
 		.pipe concat 'main.min.js'
-		.pipe gulp.dest 'www/build/'
+		.pipe gulp.dest 'public/build/'
 
 # build
 gulp.task 'production', ['sass', 'css:minify', 'coffee', 'js:minify', 'js:all']
