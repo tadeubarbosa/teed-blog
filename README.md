@@ -16,6 +16,10 @@ I was want to create a professional and beautiful website, based on the best act
 The idea for that project was create an website from another creators of blogs, in other words, an website to make blogs.
 > like: Blogger, Wordpress (the online platform), and many others.
 
+##### the development
+
+I was design it in Behance. Please, see it in: https://www.behance.net/gallery/55453755/teedblog
+
 ##### the technologies
 
 The technologies that I was want to use here are: PHP, SASS, and related.
