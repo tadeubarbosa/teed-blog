@@ -21,7 +21,7 @@ gulp.task('sass', function() {
 	return gulp.src('assets/sass/*.sass')
 		.pipe(sass())
 		.pipe(prefix({
-			browsers: ['last 5 versions'].concat,
+			browsers: ['last 5 versions'],
 			cascade: false
 		}))
 		.pipe(livereload())
