@@ -1,25 +1,24 @@
-## teed-blog
-### A fictional website.
-
-This is just an development of a fictional website.
-
-> Have many things to change here yet.
-
+## Teed Blog
 ---
+#### Um site fictício
 
-#### Why?
+Este é o desenvolvimento de um site fictício.
 
-I was want to create a professional and beautiful website, based on the best actual technologies, to provider to my client an powerful experience in the web.
 
-##### the concept
+#### Por quê?
 
-The idea for that project was create an website from another creators of blogs, in other words, an website to make blogs.
-> like: Blogger, Wordpress (the online platform), and many others.
+Eu queria criar um site profissional, bonito e funcional para o meu portifólio, baseado nas tecnologias mais atuais, para providenciar uma usabilidade realmente proveitosa para os possíveis usuários.
 
-##### the development
+#### O conceito
 
-I was design it in Behance. Please, see it in: https://www.behance.net/gallery/55453755/teedblog
+A ideia por trás do projeto era criar um website para outros criados de blogs, em outras palavras, um website para criação de blogs.
 
-##### the technologies
+> parecido com: Blogger, Wordpress (a plataforma online), e outros.
 
-The technologies that I was want to use here are: PHP, SASS, and related.
+#### O desenvolvimento
+
+Eu desenvolvi este site no Behance. Visite em: https://www.behance.net/gallery/55453755/teedblog
+
+#### As tecnologias
+
+As tecnologias que eu utilizei foram: HTML, CSS, SASS e relacionadas.
