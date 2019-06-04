@@ -4,6 +4,7 @@ const cleanCSS = require('gulp-clean-css')
 const rename = require('gulp-rename')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
+const gulpImage = require('gulp-image')
 
 const data = {
   js: {
@@ -20,6 +21,10 @@ const data = {
     files: 'assets/sass/**/*.sass',
     concat: 'sass-compiled.css',
     dest: 'assets/css/'
+  },
+  image: {
+    files: 'assets/images/**/*',
+    dest: 'public/images/'
   }
 }
 
@@ -61,6 +66,12 @@ const minify = () => {
   return series(cssMinify, jsMinify)
 }
 
+const image = () => {
+  return src(data.image.files)
+        .pipe(gulpImage())
+        .pipe(dest(data.image.dest))
+}
+
 const production = () => {
   return series(sass, css, js, minify)
 }
@@ -72,4 +83,5 @@ module.exports.cssMinify = cssMinify
 module.exports.js = js
 module.exports.jsMinify = jsMinify
 module.exports.minify = minify
+module.exports.image = image
 module.exports.production = production
