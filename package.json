@@ -1,35 +1,30 @@
 {
   "name": "teed-blog",
-  "version": "2.0.0",
-  "description": "This is just an development of a fictional website.",
+  "version": "2.4.0",
+  "description": "This is just the development of a fictional website.",
+  "license": "MIT",
+  "author": {
+    "name": "Tadeu Barbosa",
+    "email": "tadeufbarosa@gmail.com",
+    "url": "https://github.com/tadeubarbosa"
+  },
   "main": "gulpfile.js",
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.1.0",
-    "angular": "^1.7.2",
-    "bootstrap": "^4.1.1",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-clean-css": "^3.9.4",
-    "gulp-coffee": "^3.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-livereload": "^3.8.1",
-    "gulp-rename": "^1.3.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-uglify": "^3.0.0",
-    "jquery": "^3.0.0",
-    "popper.js": "^1.14.3"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tadeubarbosa/teed-blog.git"
   },
-  "author": "Tadeu Barbosa <tadeufbarbosa@gmail.com>",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/tadeubarbosa/teed-blog/issues"
   },
-  "homepage": "https://github.com/tadeubarbosa/teed-blog#readme"
+  "homepage": "https://github.com/tadeubarbosa/teed-blog#readme",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.1.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.3.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.0"
+  }
 }
