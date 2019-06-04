@@ -1,4 +1,4 @@
-const { src, dest, series } = require('gulp')
+const { watch, src, dest, series } = require('gulp')
 const gulpSass = require('gulp-sass')
 const cleanCSS = require('gulp-clean-css')
 const rename = require('gulp-rename')
@@ -68,6 +68,13 @@ const image = () => {
         .pipe(dest(data.image.dest))
 }
 
+const watchSass = () => {
+  return watch(data.sass.files, (done) => {
+    series(sass, css)()
+    done()
+  })
+}
+
 module.exports.default = sass
 module.exports.sass = sass
 module.exports.css = css
@@ -77,4 +84,6 @@ module.exports.jsMinify = jsMinify
 module.exports.image = image
 
 module.exports.minify = series(cssMinify, jsMinify)
-module.exports.production = series(sass, css, js, minify)
+module.exports.production = series(sass, css, js, series(cssMinify, jsMinify))
+
+module.exports.watchSass = watchSass
