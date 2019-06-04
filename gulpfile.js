@@ -1,5 +1,5 @@
 const { src, dest, series } = require('gulp')
-const sass = require('gulp-sass')
+const gulpSass = require('gulp-sass')
 const cleanCSS = require('gulp-clean-css')
 const rename = require('gulp-rename')
 const concat = require('gulp-concat')
@@ -13,7 +13,7 @@ const data = {
   },
   css: {
     files: 'assets/css/**/*.css',
-    main: 'public/build/main.css',
+    concat: 'main.css',
     dest: 'public/build/'
   },
   sass: {
@@ -25,7 +25,7 @@ const data = {
 
 const sass = () => {
 	return src(data.sass.files)
-		.pipe(sass())
+		.pipe(gulpSass())
 		.pipe(concat(data.sass.concat))
 		.pipe(dest(data.sass.dest))
 }
@@ -37,7 +37,7 @@ const css = () => {
 }
 
 const cssMinify = () => {
-  return src(data.css.main)
+  return src(data.css.dest + data.css.concat)
     .pipe(cleanCSS())
     .pipe(rename({ suffix: '.min' }))
     .pipe(dest(data.css.dest))
@@ -66,6 +66,7 @@ const production = () => {
 }
 
 module.exports.default = sass
+module.exports.sass = sass
 module.exports.css = css
 module.exports.cssMinify = cssMinify
 module.exports.js = js
