@@ -1,101 +1,74 @@
-let gulp = require('gulp');
-let sass = require('gulp-sass');
-let prefix = require('gulp-autoprefixer');
-let cleanCSS = require('gulp-clean-css');
-let rename = require('gulp-rename');
-let concat = require('gulp-concat');
-let uglify = require('gulp-uglify');
-let livereload = require('gulp-livereload');
+const { src, dest, series } = require('gulp')
+const sass = require('gulp-sass')
+const cleanCSS = require('gulp-clean-css')
+const rename = require('gulp-rename')
+const concat = require('gulp-concat')
+const uglify = require('gulp-uglify')
 
-let jsInternals = [
-	'assets/javascript/**/*'
-]
-let jsExternals = [
-	'node_modules/jquery/dist/jquery.js',
-	// 'node_modules/popper.js/dist/popper.js',
-	'node_modules/bootstrap/dist/js/bootstrap.js',
-]
+const data = {
+  js: {
+    files: 'assets/js/**/*.js',
+    concat: 'main.js',
+    dest: 'public/build/'
+  },
+  css: {
+    files: 'assets/css/**/*.css',
+    main: 'public/build/main.css',
+    dest: 'public/build/'
+  },
+  sass: {
+    files: 'assets/sass/**/*.sass',
+    concat: 'sass-compiled.css',
+    dest: 'assets/css/'
+  }
+}
 
-// compile sass
-gulp.task('sass', function() {
-	return gulp.src('assets/sass/*.sass')
+const sass = () => {
+	return src(data.sass.files)
 		.pipe(sass())
-		.pipe(prefix({
-			browsers: ['last 5 versions'],
-			cascade: false
-		}))
-		.pipe(livereload())
-		.pipe(gulp.dest('public/build/'));
-});
+		.pipe(concat(data.sass.concat))
+		.pipe(dest(data.sass.dest))
+}
 
-// concat internal js
-gulp.task('js:internals', function() {
-	return gulp.src(jsInternals)
+const css = () => {
+	return src(data.css.files)
+		.pipe(concat(data.css.concat))
+		.pipe(dest(data.css.dest))
+}
+
+const cssMinify = () => {
+  return src(data.css.main)
+    .pipe(cleanCSS())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(dest(data.css.dest))
+}
+
+const js = () => {
+	return src(data.js.files)
 		.pipe(uglify())
-		.pipe(concat('internals.js'))
-		.pipe(livereload())
-		.pipe(gulp.dest('public/build/'))
-});
+		.pipe(concat(data.js.concat))
+		.pipe(dest(data.js.dest))
+}
 
-// concat external js
-gulp.task('js:externals', function() {
-	return gulp.src(jsExternals)
-		.pipe(uglify())
-		.pipe(concat('externals.js'))
-		.pipe(livereload())
-		.pipe(gulp.dest('public/build/'))
-});
-
-//
-// minify functions
-
-// minify css
-gulp.task('css:minify', function() {
-	return gulp.src('public/build/main.css')
-		.pipe(cleanCSS({
-			debug: true, compatibility: 'ie8'
-		}))
-		.pipe(prefix({
-			browsers: ['last 5 versions'],
-			cascade: false
-		}))
-		.pipe(rename({ suffix:'.min' }))
-		.pipe(livereload())
-		.pipe(gulp.dest('public/build/'))
-});
-
-// minify js
-gulp.task('js:minify', function() {
-	return gulp.src('public/build/internals.js')
+const jsMinify = () => {
+	return src(data.js.dest + data.js.concat)
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(livereload())
-		.pipe(gulp.dest('public/build/'))
-});
+		.pipe(dest(data.js.dest))
+}
 
-// minify all types
-gulp.task('minify', ['css:minify', 'js:minify']);
+const minify = () => {
+  return series(cssMinify, jsMinify)
+}
 
-// concat scripts
-gulp.task('js:all', function() {
-	return gulp.src(['public/build/externals.js', 'public/build/internals.min.js'])
-		.pipe(concat('main.min.js'))
-		.pipe(livereload())
-		.pipe(gulp.dest('public/build/'))
-});
+const production = () => {
+  return series(sass, css, js, minify)
+}
 
-// build
-gulp.task('production', ['sass', 'css:minify', 'js:minify', 'js:all']);
-
-// css:watch
-gulp.task('sass:watch', function() {
-	livereload.listen();
-	gulp.watch('assets/sass/**/*.sass', ['sass'], { awaitWriteFinish: true });
-});
-
-// watch all
-gulp.task('watch', function() {
-	livereload.listen();
-	gulp.watch('assets/sass/**/*.sass', ['sass'],   { awaitWriteFinish: true });
-	gulp.watch('assets/angular/**/*.js', ['js:internals'], { awaitWriteFinish: true });
-});
+module.exports.default = sass
+module.exports.css = css
+module.exports.cssMinify = cssMinify
+module.exports.js = js
+module.exports.jsMinify = jsMinify
+module.exports.minify = minify
+module.exports.production = production
