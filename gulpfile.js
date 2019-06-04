@@ -62,18 +62,10 @@ const jsMinify = () => {
 		.pipe(dest(data.js.dest))
 }
 
-const minify = () => {
-  return series(cssMinify, jsMinify)
-}
-
 const image = () => {
   return src(data.image.files)
         .pipe(gulpImage())
         .pipe(dest(data.image.dest))
-}
-
-const production = () => {
-  return series(sass, css, js, minify)
 }
 
 module.exports.default = sass
@@ -82,6 +74,7 @@ module.exports.css = css
 module.exports.cssMinify = cssMinify
 module.exports.js = js
 module.exports.jsMinify = jsMinify
-module.exports.minify = minify
 module.exports.image = image
-module.exports.production = production
+
+module.exports.minify = series(cssMinify, jsMinify)
+module.exports.production = series(sass, css, js, minify)
